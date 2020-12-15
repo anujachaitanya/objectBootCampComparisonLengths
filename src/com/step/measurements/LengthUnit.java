@@ -16,4 +16,9 @@ public enum LengthUnit {
     public double convertToBase(double anotherLength) {
         return this.conversionFactor * anotherLength;
     }
+
+    public double convertToInch(double value) {
+        double valueInBaseUnit = this.convertToBase(value);
+        return valueInBaseUnit / LengthUnit.INCH.conversionFactor;
+    }
 }

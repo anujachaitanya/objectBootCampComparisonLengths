@@ -26,8 +26,6 @@ public class LengthTest {
         assertTrue(lengthInMM.compare(lengthInCM));
     }
 
-
-
     @Test
     public void shouldCompareTwoLengthWhenFirstOneSmaller() {
         Length lengthInFeet = new Length(1, LengthUnit.FEET);
@@ -40,6 +38,14 @@ public class LengthTest {
         Length lengthInFeet = new Length(2, LengthUnit.FEET);
         Length lengthInInch = new Length(12, LengthUnit.INCH);
         assertFalse(lengthInFeet.compare(lengthInInch));
+    }
+
+    @Test
+    public void shouldAddTwoLengthsInInches() {
+        Length lengthInFeet = new Length(2, LengthUnit.INCH);
+        Length lengthInInch = new Length(12, LengthUnit.INCH);
+        Length sumOfTwoLength = new Length(14, LengthUnit.INCH);
+        assertEquals(sumOfTwoLength,lengthInFeet.add(lengthInInch));
     }
 
 }
