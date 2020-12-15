@@ -1,26 +1,18 @@
 package com.step.measurements;
 
 public enum Unit {
-    INCH {
-        @Override
-        public Length convertToInches(double anotherLength) {
-            return new Length(anotherLength, INCH);
-        }
-    },
-    FEET {
-        @Override
-        public Length convertToInches(double anotherLength) {
-            double lengthInInches = anotherLength * 12;
-            return new Length(lengthInInches, INCH);
-        }
-    },
-    CM {
-        @Override
-        public Length convertToInches(double anotherLength) {
-            double lengthInInches = anotherLength / 2.5;
-            return new Length(lengthInInches, INCH);
-        }
-    };
+    FEET(300),
+    INCH(25),
+    CM(10),
+    MM(1);
 
-    public abstract Length convertToInches(double anotherLength);
+    private final double conversionFactor;
+
+    Unit(double conversionFactor) {
+        this.conversionFactor = conversionFactor;
+    }
+
+    public double convertToBase(double anotherLength) {
+        return this.conversionFactor * anotherLength;
+    };
 }
