@@ -24,4 +24,9 @@ public class UnitTest {
     public void shouldConvertGivenMMToBase() {
         assertEquals(2, Unit.MM.convertToBase(2), 0);
     }
+
+    @Test
+    public void shouldConvertGivenGallonToLitre() {
+        assertEquals(3.78, Unit.GALLON.convertToBase(1), 0);
+    }
 }
