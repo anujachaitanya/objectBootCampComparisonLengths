@@ -1,16 +1,15 @@
 package com.step.measurements;
 
-public enum Unit {
+public enum LengthUnit {
     FEET(300),
     INCH(25),
     CM(10),
-    MM(1),
-    LITRE(1),
-    GALLON(3.78);
+    MM(1);
+
 
     private final double conversionFactor;
 
-    Unit(double conversionFactor) {
+    LengthUnit(double conversionFactor) {
         this.conversionFactor = conversionFactor;
     }
 
