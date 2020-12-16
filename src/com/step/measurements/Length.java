@@ -11,9 +11,18 @@ public class Length {
         this.lengthUnit = lengthUnit;
     }
 
+    @Override
+    public String toString() {
+        return "Length{" +
+                "value=" + value +
+                ", lengthUnit=" + lengthUnit +
+                '}';
+    }
+
     public boolean compare(Length anotherLength) {
         double firstLength = this.convertToBaseUnit();
         double secondLength = anotherLength.convertToBaseUnit();
+        System.out.println(firstLength + " " + secondLength);
         return firstLength == secondLength;
     }
 
@@ -25,7 +34,7 @@ public class Length {
     }
 
     private double convertToInch() {
-        return this.lengthUnit.convertToInch(this.value);
+        return this.lengthUnit.convertToStandardUnit(this.value);
     }
 
     private double convertToBaseUnit() {

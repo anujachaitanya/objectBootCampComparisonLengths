@@ -48,4 +48,11 @@ public class LengthTest {
         assertEquals(sumOfTwoLength,lengthInFeet.add(lengthInInch));
     }
 
+    @Test
+    public void shouldAddTwoLengthsWithDifferentUnit() {
+        Length length = new Length(2, LengthUnit.INCH);
+        Length anotherLength = new Length(2.5, LengthUnit.CM);
+        Length sumOfTwoLengths = new Length(3, LengthUnit.INCH);
+        assertEquals(sumOfTwoLengths, length.add(anotherLength));
+    }
 }
