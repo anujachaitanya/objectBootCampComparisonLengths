@@ -19,10 +19,10 @@ public class Length {
     }
 
     public Length add(Length anotherLength) {
-        double firstLengthInInch = this.convertToStandardUnit();
-        double secondLengthInInch = anotherLength.convertToStandardUnit();
-        double sumOfLength = firstLengthInInch + secondLengthInInch;
-        return new Length(sumOfLength,STANDARD_UNIT);
+        double firstLengthInStandard = this.convertToStandardUnit();
+        double secondLengthInStandard = anotherLength.convertToStandardUnit();
+        double sumOfLength = firstLengthInStandard + secondLengthInStandard;
+        return new Length(sumOfLength, STANDARD_UNIT);
     }
 
     private double convertToStandardUnit() {
