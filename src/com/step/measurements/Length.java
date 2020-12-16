@@ -26,7 +26,7 @@ public class Length {
     }
 
     private double convertToStandardUnit() {
-        return this.lengthUnit.convertToStandardUnit(this.value, STANDARD_UNIT);
+        return this.lengthUnit.convertTo(this.value, STANDARD_UNIT);
     }
 
     private double convertToBaseUnit() {

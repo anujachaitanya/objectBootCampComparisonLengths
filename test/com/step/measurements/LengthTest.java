@@ -27,21 +27,14 @@ public class LengthTest {
     }
 
     @Test
-    public void shouldCompareTwoLengthWhenFirstOneSmaller() {
-        Length lengthInFeet = new Length(1, LengthUnit.FEET);
-        Length lengthInInch = new Length(13, LengthUnit.INCH);
-        assertFalse(lengthInFeet.compare(lengthInInch));
-    }
-
-    @Test
-    public void shouldCompareTwoLengthWhenFirstOneGreater() {
+    public void shouldCompareTwoUnequalLength() {
         Length lengthInFeet = new Length(2, LengthUnit.FEET);
         Length lengthInInch = new Length(12, LengthUnit.INCH);
         assertFalse(lengthInFeet.compare(lengthInInch));
     }
 
     @Test
-    public void shouldAddTwoLengthsInInches() {
+    public void shouldAddTwoLengthsWithSameUnit() {
         Length lengthInFeet = new Length(2, LengthUnit.INCH);
         Length lengthInInch = new Length(12, LengthUnit.INCH);
         Length sumOfTwoLength = new Length(14, LengthUnit.INCH);
