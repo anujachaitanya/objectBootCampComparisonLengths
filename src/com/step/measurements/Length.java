@@ -3,6 +3,7 @@ package com.step.measurements;
 import java.util.Objects;
 
 public class Length {
+    private static final LengthUnit STANDARD_UNIT = LengthUnit.INCH;
     private final double value;
     private final LengthUnit lengthUnit;
 
@@ -11,30 +12,21 @@ public class Length {
         this.lengthUnit = lengthUnit;
     }
 
-    @Override
-    public String toString() {
-        return "Length{" +
-                "value=" + value +
-                ", lengthUnit=" + lengthUnit +
-                '}';
-    }
-
     public boolean compare(Length anotherLength) {
         double firstLength = this.convertToBaseUnit();
         double secondLength = anotherLength.convertToBaseUnit();
-        System.out.println(firstLength + " " + secondLength);
         return firstLength == secondLength;
     }
 
     public Length add(Length anotherLength) {
-        double firstLengthInInch = this.convertToInch();
-        double secondLengthInInch = anotherLength.convertToInch();
+        double firstLengthInInch = this.convertToStandardUnit();
+        double secondLengthInInch = anotherLength.convertToStandardUnit();
         double sumOfLength = firstLengthInInch + secondLengthInInch;
-        return new Length(sumOfLength, LengthUnit.INCH);
+        return new Length(sumOfLength,STANDARD_UNIT);
     }
 
-    private double convertToInch() {
-        return this.lengthUnit.convertToStandardUnit(this.value);
+    private double convertToStandardUnit() {
+        return this.lengthUnit.convertToStandardUnit(this.value, STANDARD_UNIT);
     }
 
     private double convertToBaseUnit() {

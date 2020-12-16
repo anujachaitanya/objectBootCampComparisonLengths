@@ -24,6 +24,4 @@ public class LengthUnitTest {
     public void shouldConvertGivenMMToBase() {
         assertEquals(2, LengthUnit.MM.convertToBase(2), 0);
     }
-
-
 }
