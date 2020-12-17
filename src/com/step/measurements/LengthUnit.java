@@ -21,9 +21,4 @@ public enum LengthUnit implements Unit {
     public double parse(double valueInBaseUnit) {
         return valueInBaseUnit / this.conversionFactor;
     }
-
-    @Override
-    public Unit getStandardUnit() {
-        return INCH;
-    }
 }

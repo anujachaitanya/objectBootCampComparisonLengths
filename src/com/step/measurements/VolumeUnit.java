@@ -6,7 +6,7 @@ public enum VolumeUnit implements Unit {
 
     private final double conversionFactor;
 
-    VolumeUnit(double conversionFactor) {
+    VolumeUnit(double conversionFactor){
         this.conversionFactor = conversionFactor;
     }
 
@@ -20,8 +20,4 @@ public enum VolumeUnit implements Unit {
         return valueInBaseUnit / this.conversionFactor;
     }
 
-    @Override
-    public Unit getStandardUnit() {
-        return LITRE;
-    }
 }

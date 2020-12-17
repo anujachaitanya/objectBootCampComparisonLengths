@@ -4,6 +4,4 @@ public interface Unit {
     double convertToBase(double anotherVolume);
 
     double parse(double valueInBaseUnit);
-
-    Unit getStandardUnit();
 }

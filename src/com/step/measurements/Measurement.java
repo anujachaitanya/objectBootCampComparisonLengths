@@ -5,10 +5,20 @@ import java.util.Objects;
 public class Measurement<T extends Unit> {
     private final double value;
     private final T unit;
+    private final T standardUnit;
 
-    public Measurement(double value, T unit) {
+    private Measurement(double value, T unit, T standardUnit) {
         this.value = value;
         this.unit = unit;
+        this.standardUnit = standardUnit;
+    }
+
+    public static Measurement<LengthUnit> createLength(double value, LengthUnit unit){
+        return new Measurement<>(value, unit, LengthUnit.INCH);
+    }
+
+    public static Measurement<VolumeUnit> createVolume(double value, VolumeUnit unit){
+        return new Measurement<>(value, unit, VolumeUnit.LITRE);
     }
 
     public boolean compare(Measurement<T> anotherMeasurement) {
@@ -17,34 +27,34 @@ public class Measurement<T extends Unit> {
         return secondMeasurement == firstMeasurement;
     }
 
+    public Measurement<T> add(Measurement<T> anotherMeasurement) {
+        double firstLengthInStandard = convertToStandard();
+        double secondLengthInStandard = anotherMeasurement.convertToStandard();
+        double sumOfLength = firstLengthInStandard + secondLengthInStandard;
+        return new Measurement<>(sumOfLength, this.standardUnit, this.standardUnit);
+    }
+
     private double convertToBaseUnit() {
         return this.unit.convertToBase(this.value);
     }
 
-    public Measurement<T> add(Measurement<T> anotherMeasurement) {
-        Unit standardUnit = this.unit.getStandardUnit();
-        double firstLengthInStandard = convertToStandard(standardUnit);
-        double secondLengthInStandard = anotherMeasurement.convertToStandard(standardUnit);
-        double sumOfLength = firstLengthInStandard + secondLengthInStandard;
-        return new Measurement(sumOfLength, standardUnit);
-    }
-
-
-    private double convertToStandard(Unit standardUnit) {
+    private double convertToStandard() {
         double valueInBase = this.unit.convertToBase(this.value);
-        return standardUnit.parse(valueInBase);
+        return this.standardUnit.parse(valueInBase);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Measurement<T> that = (Measurement<T>) o;
-        return Double.compare(that.value, value) < 0.01 && unit.equals(that.unit);
+        Measurement<?> that = (Measurement<?>) o;
+        return Double.compare(Math.round(that.value), Math.round(value)) == 0 &&
+                unit.equals(that.unit) &&
+                standardUnit.equals(that.standardUnit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, unit);
+        return Objects.hash(value, unit, standardUnit);
     }
 }
