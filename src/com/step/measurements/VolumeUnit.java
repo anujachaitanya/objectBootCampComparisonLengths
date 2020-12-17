@@ -1,6 +1,6 @@
 package com.step.measurements;
 
-public enum VolumeUnit {
+public enum VolumeUnit implements Unit {
     LITRE(1),
     GALLON(3.78);
 
@@ -10,12 +10,18 @@ public enum VolumeUnit {
         this.conversionFactor = conversionFactor;
     }
 
+    @Override
     public double convertToBase(double anotherVolume) {
         return this.conversionFactor * anotherVolume;
     }
 
-    public double convertTo(double value, VolumeUnit unit) {
-        double valueInBaseUnit = this.convertToBase(value);
-        return valueInBaseUnit / unit.conversionFactor;
+    @Override
+    public double parse(double valueInBaseUnit) {
+        return valueInBaseUnit / this.conversionFactor;
+    }
+
+    @Override
+    public Unit getStandardUnit() {
+        return LITRE;
     }
 }

@@ -1,11 +1,10 @@
 package com.step.measurements;
 
-public enum LengthUnit {
+public enum LengthUnit implements Unit {
     FEET(300),
     INCH(25),
     CM(10),
     MM(1);
-
 
     private final double conversionFactor;
 
@@ -13,12 +12,18 @@ public enum LengthUnit {
         this.conversionFactor = conversionFactor;
     }
 
+    @Override
     public double convertToBase(double anotherLength) {
         return this.conversionFactor * anotherLength;
     }
 
-    public double convertTo(double value, LengthUnit unit) {
-        double valueInBaseUnit = this.convertToBase(value);
-        return valueInBaseUnit / unit.conversionFactor;
+    @Override
+    public double parse(double valueInBaseUnit) {
+        return valueInBaseUnit / this.conversionFactor;
+    }
+
+    @Override
+    public Unit getStandardUnit() {
+        return INCH;
     }
 }
