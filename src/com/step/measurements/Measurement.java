@@ -5,46 +5,23 @@ import java.util.Objects;
 public class Measurement<T extends Unit> {
     private final double value;
     private final T unit;
-    private final T standardUnit;
 
-    private Measurement(double value, T unit, T standardUnit) {
+    public Measurement(double value, T unit) {
         this.value = value;
         this.unit = unit;
-        this.standardUnit = standardUnit;
     }
 
-    public static Measurement<LengthUnit> createLength(double value, LengthUnit unit){
-        return new Measurement<>(value, unit, LengthUnit.INCH);
-    }
-
-    public static Measurement<VolumeUnit> createVolume(double value, VolumeUnit unit){
-        return new Measurement<>(value, unit, VolumeUnit.LITRE);
-    }
-
-    public static Measurement<TemperatureUnit> createTemperature(int value, TemperatureUnit unit) {
-        return new Measurement<>(value, unit, TemperatureUnit.CELSIUS);
-    }
-
-    public boolean compare(Measurement<T> anotherMeasurement) {
-        double firstMeasurement = this.convertToBaseUnit();
-        double secondMeasurement = anotherMeasurement.convertToBaseUnit();
-        return secondMeasurement == firstMeasurement;
-    }
-
-    public Measurement<T> add(Measurement<T> anotherMeasurement) {
-        double firstLengthInStandard = this.convertToStandard();
-        double secondLengthInStandard = anotherMeasurement.convertToStandard();
-        double sumOfLength = firstLengthInStandard + secondLengthInStandard;
-        return new Measurement<>(sumOfLength, this.standardUnit, this.standardUnit);
+    public boolean compare(Measurement<T> other) {
+        return this.convertToBaseUnit() == other.convertToBaseUnit();
     }
 
     private double convertToBaseUnit() {
         return this.unit.convertToBase(this.value);
     }
 
-    private double convertToStandard() {
+    public double convertTo(T standardUnit) {
         double valueInBase = this.unit.convertToBase(this.value);
-        return this.standardUnit.parse(valueInBase);
+        return standardUnit.parse(valueInBase);
     }
 
     @Override
@@ -53,12 +30,11 @@ public class Measurement<T extends Unit> {
         if (o == null || getClass() != o.getClass()) return false;
         Measurement<?> that = (Measurement<?>) o;
         return Double.compare(Math.round(that.value), Math.round(value)) == 0 &&
-                unit.equals(that.unit) &&
-                standardUnit.equals(that.standardUnit);
+                unit.equals(that.unit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, unit, standardUnit);
+        return Objects.hash(value, unit);
     }
 }

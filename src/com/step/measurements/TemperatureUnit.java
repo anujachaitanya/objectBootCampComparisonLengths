@@ -1,21 +1,24 @@
 package com.step.measurements;
 
 public enum TemperatureUnit implements Unit{
-    CELSIUS(1), FAHRENHEIT(2.12);
+    CELSIUS(1.8,32),
+    FAHRENHEIT(1,0);
 
     private final double conversionFactor;
+    private final int constant;
 
-    TemperatureUnit(double conversionFactor) {
+    TemperatureUnit(double conversionFactor,int constant) {
         this.conversionFactor = conversionFactor;
+        this.constant = constant;
     }
 
     @Override
     public double convertToBase(double anotherTemperature) {
-        return anotherTemperature * conversionFactor;
+        return (anotherTemperature * conversionFactor) + this.constant;
     }
 
     @Override
     public double parse(double valueInBaseUnit) {
-        return valueInBaseUnit / conversionFactor;
+        return valueInBaseUnit / conversionFactor ;
     }
 }
