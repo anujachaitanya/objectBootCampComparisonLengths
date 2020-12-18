@@ -18,7 +18,7 @@ public enum TemperatureUnit implements Unit{
     }
 
     @Override
-    public double parse(double valueInBaseUnit) {
+    public double convertFromBase(double valueInBaseUnit) {
         return valueInBaseUnit / conversionFactor ;
     }
 }

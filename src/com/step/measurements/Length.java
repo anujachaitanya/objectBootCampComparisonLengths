@@ -1,14 +1,15 @@
 package com.step.measurements;
 
-public class Length  extends Measurement<LengthUnit>{
+public class Length extends AddableMeasurement<LengthUnit> {
 
-    public Length(double value, LengthUnit unit){
-        super(value, unit);
+    public Length(double value, LengthUnit magnitude){
+        super(value, magnitude);
     }
 
-    public Length add(Length other) {
+    @Override
+    public Length add(AddableMeasurement<LengthUnit> other) {
         LengthUnit standardUnit = LengthUnit.INCH;
-        double sumOfLength = this.convertTo(standardUnit) + other.convertTo(standardUnit);
-        return new Length(sumOfLength, standardUnit);
+        double totalMagnitude = this.convertTo(standardUnit) +  other.convertTo(standardUnit);
+        return new Length(totalMagnitude, standardUnit);
     }
 }

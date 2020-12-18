@@ -3,11 +3,11 @@ package com.step.measurements;
 import java.util.Objects;
 
 public class Measurement<T extends Unit> {
-    private final double value;
+    private final double magnitude;
     private final T unit;
 
-    public Measurement(double value, T unit) {
-        this.value = value;
+    public Measurement(double magnitude, T unit) {
+        this.magnitude = magnitude;
         this.unit = unit;
     }
 
@@ -16,12 +16,12 @@ public class Measurement<T extends Unit> {
     }
 
     private double convertToBaseUnit() {
-        return this.unit.convertToBase(this.value);
+        return this.unit.convertToBase(this.magnitude);
     }
 
     public double convertTo(T standardUnit) {
-        double valueInBase = this.unit.convertToBase(this.value);
-        return standardUnit.parse(valueInBase);
+        double valueInBase = this.unit.convertToBase(this.magnitude);
+        return standardUnit.convertFromBase(valueInBase);
     }
 
     @Override
@@ -29,12 +29,12 @@ public class Measurement<T extends Unit> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Measurement<?> that = (Measurement<?>) o;
-        return Double.compare(Math.round(that.value), Math.round(value)) == 0 &&
+        return Double.compare(Math.round(that.magnitude), Math.round(magnitude)) == 0 &&
                 unit.equals(that.unit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, unit);
+        return Objects.hash(magnitude, unit);
     }
 }
