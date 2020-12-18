@@ -79,4 +79,11 @@ public class MeasurementTest {
         Measurement<VolumeUnit> expectedVolume = Measurement.createVolume(4.78, VolumeUnit.LITRE);
         assertEquals(expectedVolume, volume.add(anotherVolume));
     }
+
+    @Test
+    public void shouldCompareTwoTemperaturesWhenEqual() {
+        Measurement<TemperatureUnit> temperature = Measurement.createTemperature(100, TemperatureUnit.CELSIUS);
+        Measurement<TemperatureUnit> anotherTemperature = Measurement.createTemperature(212, TemperatureUnit.FAHRENHEIT);
+        assertTrue(temperature.compare(anotherTemperature));
+    }
 }

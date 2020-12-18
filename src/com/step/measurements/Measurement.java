@@ -21,6 +21,10 @@ public class Measurement<T extends Unit> {
         return new Measurement<>(value, unit, VolumeUnit.LITRE);
     }
 
+    public static Measurement<TemperatureUnit> createTemperature(int value, TemperatureUnit unit) {
+        return new Measurement<>(value, unit, TemperatureUnit.CELSIUS);
+    }
+
     public boolean compare(Measurement<T> anotherMeasurement) {
         double firstMeasurement = this.convertToBaseUnit();
         double secondMeasurement = anotherMeasurement.convertToBaseUnit();
@@ -28,7 +32,7 @@ public class Measurement<T extends Unit> {
     }
 
     public Measurement<T> add(Measurement<T> anotherMeasurement) {
-        double firstLengthInStandard = convertToStandard();
+        double firstLengthInStandard = this.convertToStandard();
         double secondLengthInStandard = anotherMeasurement.convertToStandard();
         double sumOfLength = firstLengthInStandard + secondLengthInStandard;
         return new Measurement<>(sumOfLength, this.standardUnit, this.standardUnit);

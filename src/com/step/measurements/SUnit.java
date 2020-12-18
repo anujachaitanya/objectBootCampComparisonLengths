@@ -1,6 +1,11 @@
 package com.step.measurements;
 
 public class SUnit {
-    public SUnit(int i) {
+    private final double conversionFactor;
+
+    public SUnit(double conversionFactor) {
+        this.conversionFactor = conversionFactor;
     }
+
+
 }
