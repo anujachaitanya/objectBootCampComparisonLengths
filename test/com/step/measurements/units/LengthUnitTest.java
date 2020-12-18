@@ -1,4 +1,4 @@
-package com.step.measurements;
+package com.step.measurements.units;
 
 import com.step.measurements.units.LengthUnit;
 import org.junit.Test;
