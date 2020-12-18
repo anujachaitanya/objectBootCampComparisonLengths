@@ -1,5 +1,7 @@
 package com.step.measurements;
 
+import com.step.measurements.units.Unit;
+
 import java.util.Objects;
 
 public class Measurement<T extends Unit> {

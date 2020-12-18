@@ -1,5 +1,6 @@
 package com.step.measurements;
 
+import com.step.measurements.units.LengthUnit;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

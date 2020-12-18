@@ -1,4 +1,4 @@
-package com.step.measurements;
+package com.step.measurements.units;
 
 public enum VolumeUnit implements Unit {
     LITRE(1),

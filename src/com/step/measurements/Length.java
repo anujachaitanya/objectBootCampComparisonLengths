@@ -1,5 +1,7 @@
 package com.step.measurements;
 
+import com.step.measurements.units.LengthUnit;
+
 public class Length extends AddableMeasurement<LengthUnit> {
 
     public Length(double value, LengthUnit magnitude){

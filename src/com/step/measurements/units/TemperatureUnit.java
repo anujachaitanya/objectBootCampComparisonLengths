@@ -1,4 +1,4 @@
-package com.step.measurements;
+package com.step.measurements.units;
 
 public enum TemperatureUnit implements Unit{
     CELSIUS(1.8,32),

@@ -1,4 +1,4 @@
-package com.step.measurements;
+package com.step.measurements.units;
 
 public interface Unit {
     double convertToBase(double anotherVolume);

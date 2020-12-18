@@ -1,4 +1,4 @@
-package com.step.measurements;
+package com.step.measurements.units;
 
 public enum LengthUnit implements Unit {
     FEET(300),

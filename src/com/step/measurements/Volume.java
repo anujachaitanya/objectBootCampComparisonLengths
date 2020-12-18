@@ -1,5 +1,7 @@
 package com.step.measurements;
 
+import com.step.measurements.units.VolumeUnit;
+
 public class Volume extends AddableMeasurement<VolumeUnit>{
 
     public Volume(double value, VolumeUnit unit){
